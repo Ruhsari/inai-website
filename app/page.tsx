@@ -1,26 +1,36 @@
-// src/app/page.tsx
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-// import Hero from "@/components/sections/Hero";
-import AboutInstitute from "@/components/sections/AboutInstitute";
-import WhyUs from "@/components/sections/WhyUs";
-import Programs from "@/components/sections/Programs";
-import News from "@/components/sections/News";
-import Events from "@/components/sections/Events";
+"use client";
+
+import { Button, Container, Title, Text, Group, Card, SimpleGrid, AppShell } from "@mantine/core";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { ProgramsBanner } from "@/components/ProgramsBanner";
+import { NewsAndEvents } from "@/components/NewsAndEvents";
+import { Footer } from "@/components/Footer";
+import { AboutSection } from "@/components/AboutSection";
+import { ReasonsSection } from "@/components/ReasonsSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-hidden">
-      <Header />
-      <main className="flex-col items-center justify-between w-full">
-        {/*<Hero />*/}
-        <AboutInstitute />
-        <WhyUs />
-        <Programs />
-        <News />
-        <Events />
-      </main>
+    <AppShell header={{ height: 140 }} padding={0}
+    className="flex flex-col min-h-screen bg-gray-50">
+      <AppShell.Header>
+        <Header />
+      </AppShell.Header>
+
+      <AppShell.Main>
+        <Hero />
+
+        <AboutSection />
+
+        <ReasonsSection />
+
+        <ProgramsBanner />
+
+        <NewsAndEvents />
+
+      </AppShell.Main>
+
       <Footer />
-    </div>
+    </AppShell>
   );
 }
