@@ -8,7 +8,7 @@
 </g>
 <defs>
 <linearGradient id="paint0_linear_1278_12" x1="30" y1="60.5" x2="1876" y2="631" gradientUnits="userSpaceOnUse">
-<stop stop-color="#141A51"/>
+<stop stop-color="#141A51" offset=""/>
 <stop offset="1" stop-color="#9BA3E5"/>
 </linearGradient>
 </defs>
