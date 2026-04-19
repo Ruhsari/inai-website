@@ -1,98 +1,114 @@
 "use client";
 
-import { Container, Title, Text, Card, SimpleGrid, Badge, Button, Group } from '@mantine/core';
-import { IconArrowRight, IconCalendarEvent } from '@tabler/icons-react';
+import { Container, Title, Text, Button, ActionIcon } from '@mantine/core';
+import Image from 'next/image';
+import { IconArrowRight } from '@tabler/icons-react';
 
-// Данные из макета
-const events = [
+const newsItems = [
   {
+    id: 1,
     title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Масштабное соревнование для разработчиков: создай код будущего!',
-    category: 'Хакатоны',
-    date: 'Скоро',
-    color: 'blue',
+    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
+    image: '/images/news-1.png', 
   },
   {
-    title: 'День открытых дверей в INAI!',
-    description: 'Добро начинается с тебя! Узнай больше о нашем институте и программах.',
-    category: 'Мероприятия',
-    date: 'Скоро',
-    color: 'cyan',
+    id: 2,
+    title: 'Внутриинститутский и межинститутский Хакатон',
+    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
+    image: '/images/news-2.png',
   },
   {
-    title: 'Благотворительная ярмарка',
-    description: 'В поддержку детского дома. Прими участие в студенческой жизни.',
-    category: 'Студенческая жизнь',
-    date: 'Скоро',
-    color: 'pink',
+    id: 3,
+    title: 'Внутриинститутский и межинститутский Хакатон',
+    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
+    image: '/images/news-3.png',
+  },
+  {
+    id: 4,
+    title: 'Внутриинститутский и межинститутский Хакатон',
+    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
+    image: '/images/news-4.png',
   },
 ];
 
 export function NewsAndEvents() {
   return (
-    <section className="py-20 bg-gray-50" id="news">
-      <Container size="lg">
-        <Group justify="space-between" align="flex-end" className="mb-12">
-          <div>
-            <Text color="blue" className="font-semibold tracking-wider uppercase mb-2">
-              События
-            </Text>
-            <Title order={2} className="text-3xl md:text-4xl font-bold text-gray-900">
-              Новости и мероприятия
-            </Title>
-          </div>
-          <Button 
-            variant="light" 
-            color="blue" 
-            rightSection={<IconArrowRight size={16} />}
-            className="hidden sm:block"
+    <section className="relative w-full overflow-hidden">
+      
+      {/* ВЕРХНЯЯ ЧАСТЬ: Белый фон и Заголовок слева сверху */}
+      <div className="bg-white pt-24 pb-48">
+        <Container size="lg">
+          <Title 
+            order={2} 
+            className="text-[44px] md:text-[56px] font-extrabold text-[#1A235E] mb-8"
           >
-            Все новости
-          </Button>
-        </Group>
+            Новости
+          </Title>
+        </Container>
+      </div>
 
-        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="xl">
-          {events.map((event) => (
-            <Card
-              key={event.title}
-              shadow="sm"
-              padding="lg"
-              radius="md"
-              withBorder
-              className="hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col"
-            >
-              <Group justify="space-between" className="mb-4">
-                <Badge color={event.color} variant="light">
-                  {event.category}
-                </Badge>
-                <Group gap={4} className="text-gray-500">
-                  <IconCalendarEvent size={16} stroke={1.5} />
-                  <Text size="xs" fw={500}>{event.date}</Text>
-                </Group>
-              </Group>
-
-              <Title order={4} className="mb-3 text-gray-900 leading-snug">
-                {event.title}
-              </Title>
-              
-              <Text size="sm" color="dimmed" className="mb-6 flex-grow">
-                {event.description}
-              </Text>
-
-              <Button variant="subtle" color="blue" fullWidth radius="md">
-                Узнать больше
-              </Button>
-            </Card>
-          ))}
-        </SimpleGrid>
-
-        {/* Кнопка для мобильных устройств */}
-        <div className="mt-10 text-center sm:hidden">
-          <Button variant="light" color="blue" fullWidth rightSection={<IconArrowRight size={16} />}>
-            Все новости
-          </Button>
+      {/* НИЖНЯЯ ЧАСТЬ: Темно-синий фон */}
+      <div className="relative bg-[#111A50] pb-24 pt-48 -mt-64 z-0">
+        
+        {/* Фоновое изображение (линии) */}
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
+          <Image 
+            src="/images/news-bg.svg"
+            alt="Декоративный фон" 
+            fill 
+            className="object-cover"
+          />
         </div>
-      </Container>
+
+        <Container size="lg" className="relative z-10">
+          
+          {/* СЕТКА КАРТОЧЕК (наезжает на белый фон) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-64 mb-16">
+            {newsItems.map((item) => (
+              <div 
+                key={item.id} 
+                className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.15)] flex flex-col h-[460px] transition-all duration-300 hover:-translate-y-2 cursor-pointer group"
+              >
+                {/* Картинка новости */}
+                <div className="relative h-48 w-full shrink-0">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                </div>
+
+                {/* Текст новости */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <h4 className="text-[#1A235E] font-bold text-[15px] leading-snug mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-400 text-[13px] leading-relaxed line-clamp-4 flex-grow">
+                    {item.description}
+                  </p>
+                  
+                  {/* Иконка стрелки */}
+                  <div className="flex justify-end mt-4">
+                    <ActionIcon variant="transparent" className="text-gray-300 group-hover:text-[#1A235E] transition-colors">
+                      <IconArrowRight size={20} stroke={2.5} />
+                    </ActionIcon>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* КНОПКА "Все новости" */}
+          <div className="flex justify-end mt-8">
+            <Button 
+              variant="outline" 
+              color="white"
+              size="md"
+              radius="md"
+              className="border-white/30 text-white hover:bg-white/10 font-medium px-10"
+            >
+              Все новости
+            </Button>
+          </div>
+
+        </Container>
+      </div>
     </section>
   );
 }

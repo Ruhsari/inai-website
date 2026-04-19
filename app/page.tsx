@@ -8,6 +8,7 @@ import { NewsAndEvents } from "@/components/NewsAndEvents";
 import { Footer } from "@/components/Footer";
 import { AboutSection } from "@/components/AboutSection";
 import { ReasonsSection } from "@/components/ReasonsSection";
+import { EventsSection } from "@/components/EventsSection";
 
 export default function Home() {
   return (
@@ -27,6 +28,8 @@ export default function Home() {
         <ProgramsBanner />
 
         <NewsAndEvents />
+
+        <EventsSection />
 
       </AppShell.Main>
 
