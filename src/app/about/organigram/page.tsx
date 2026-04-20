@@ -33,8 +33,8 @@ export default function OrganigramPage() {
 
         <Title 
           order={1} 
-          className="text-[32px] md:text-[42px] font-serif text-[#1A235E] uppercase tracking-wider mb-16"
-        >
+         style={{ fontFamily: "'Times New Roman', Times, serif" }}
+        className="text-[32px] md:text-[42px] text-[#1A235E] uppercase tracking-wider mb-16">
           Органиграмма
         </Title>
 

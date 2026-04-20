@@ -3,18 +3,26 @@
 import { Container, Title, Text, Group, Box, Grid } from '@mantine/core';
 import { IconSchool } from '@tabler/icons-react';
 import Image from 'next/image';
-import { notFound, useParams } from 'next/navigation'; // Добавили useParams
-import { leadershipData } from '../../../../data/organigramData';
+import { notFound, useParams } from 'next/navigation';
+
+// 1. ИМПОРТИРУЕМ ВСЕ МАССИВЫ ДАННЫХ
+import { leadershipData, teachersData, projectBureauData, staffData } from '../../../../data/organigramData';
 
 export default function PersonProfilePage() {
-  // 1. Надежный способ получить ID из URL в клиентском компоненте Next.js
   const params = useParams();
   const currentId = params?.id;
 
-  // 2. Ищем человека. Оборачиваем в String(), чтобы "1" (из URL) и 1 (из данных) совпали!
-  const person = leadershipData.find((p) => String(p.id) === String(currentId));
+  // 2. ОБЪЕДИНЯЕМ ВСЕХ СОТРУДНИКОВ В ОДИН БОЛЬШОЙ СПИСОК
+  const allPersonnel = [
+    ...leadershipData, 
+    ...teachersData, 
+    ...projectBureauData, 
+    ...staffData
+  ];
 
-  // Если человек не найден или у него нет детальных данных (details), показываем 404
+  // 3. ИЩЕМ ЧЕЛОВЕКА ПО ВСЕЙ БАЗЕ
+  const person = allPersonnel.find((p) => String(p.id) === String(currentId));
+
   if (!person || !person.details) {
     return notFound();
   }
@@ -25,10 +33,8 @@ export default function PersonProfilePage() {
     <div style={{ backgroundColor: 'white', padding: '80px 0', minHeight: '100vh' }}>
       <Container size="lg">
         
-        {/* Хлебные крошки */}
         <Group gap={8} mb={40}>
           <IconSchool size={20} color="#1A235E" stroke={1.5} />
-          {/* ИСПРАВЛЕНИЕ: заменили tracking на style={{ letterSpacing: '1px' }} */}
           <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
             Органиграмма / {person.role.split(' ')[0]}
           </Text>
@@ -61,57 +67,63 @@ export default function PersonProfilePage() {
               <Grid.Col span={{ base: 12, sm: 6 }}>
                 <Box mb={16}>
                   <Text fw={700} size="sm" mb={4}>Учебное звание:</Text>
-                  <Text c="dimmed">{details.academicTitle}</Text>
+                  <Text c="dimmed">{details.academicTitle || '—'}</Text>
                 </Box>
                 <Box mb={16}>
                   <Text fw={700} size="sm" mb={4}>E-mail:</Text>
-                  <Text c="dimmed">{person.email}</Text>
+                  <Text c="dimmed">{person.email || '—'}</Text>
                 </Box>
               </Grid.Col>
               
               <Grid.Col span={{ base: 12, sm: 6 }}>
                 <Box mb={16}>
                   <Text fw={700} size="sm" mb={4}>Учебная степень:</Text>
-                  <Text c="dimmed">{details.degree}</Text>
+                  <Text c="dimmed">{details.degree || '—'}</Text>
                 </Box>
                 <Box mb={16}>
                   <Text fw={700} size="sm" mb={4}>Телефон:</Text>
-                  <Text c="dimmed">{details.phone}</Text>
+                  <Text c="dimmed">{details.phone || '—'}</Text>
                 </Box>
               </Grid.Col>
             </Grid>
           </Grid.Col>
         </Grid>
 
-        {/* НИЖНИЙ БЛОК: Списки (Образование, достижения) */}
-        <Box mb={40}>
-          <Title order={3} size="18px" tt="uppercase" mb={20}>Образование</Title>
-          {details.education?.map((item: string, index: number) => (
-            <Text key={index} mb={12} style={{ whiteSpace: 'pre-line' }}>{item}</Text>
-          ))}
-        </Box>
-
-        <Box mb={40}>
-          <Title order={3} size="18px" tt="uppercase" mb={20}>Повышение квалификации</Title>
-          {details.qualifications?.map((item: any, index: number) => (
-            <Box key={index} mb={16}>
-              <Text>{item.year}</Text>
-              <Text>{item.place}</Text>
-              <Text c="dimmed">{item.topic}</Text>
-            </Box>
-          ))}
-        </Box>
-
-        <Box mb={40}>
-          <Title order={3} size="18px" tt="uppercase" mb={20}>Достижения, поощрения</Title>
-          <ol style={{ paddingLeft: '20px', margin: 0 }}>
-            {details.achievements?.map((item: string, index: number) => (
-              <li key={index} style={{ marginBottom: '8px' }}>
-                <Text>{item}</Text>
-              </li>
+        {/* НИЖНИЙ БЛОК: Списки */}
+        {details.education && details.education.length > 0 && (
+          <Box mb={40}>
+            <Title order={3} size="18px" tt="uppercase" mb={20}>Образование</Title>
+            {details.education.map((item: string, index: number) => (
+              <Text key={index} mb={12} style={{ whiteSpace: 'pre-line' }}>{item}</Text>
             ))}
-          </ol>
-        </Box>
+          </Box>
+        )}
+
+        {details.qualifications && details.qualifications.length > 0 && (
+          <Box mb={40}>
+            <Title order={3} size="18px" tt="uppercase" mb={20}>Повышение квалификации</Title>
+            {details.qualifications.map((item: any, index: number) => (
+              <Box key={index} mb={16}>
+                <Text fw={500}>{item.year}</Text>
+                <Text>{item.place}</Text>
+                <Text c="dimmed">{item.topic}</Text>
+              </Box>
+            ))}
+          </Box>
+        )}
+
+        {details.achievements && details.achievements.length > 0 && (
+          <Box mb={40}>
+            <Title order={3} size="18px" tt="uppercase" mb={20}>Достижения, поощрения</Title>
+            <ol style={{ paddingLeft: '20px', margin: 0 }}>
+              {details.achievements.map((item: string, index: number) => (
+                <li key={index} style={{ marginBottom: '8px' }}>
+                  <Text>{item}</Text>
+                </li>
+              ))}
+            </ol>
+          </Box>
+        )}
 
       </Container>
     </div>

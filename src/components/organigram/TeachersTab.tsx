@@ -1,25 +1,62 @@
-import { Text } from '@mantine/core';
+import { Text, SimpleGrid, Box } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function TeachersTab({ data }: { data: any[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 w-full">
+    <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={40}>
       {data.map((person) => (
-        <div key={person.id} className="flex flex-col items-center w-full">
-          <div className="relative w-full max-w-[260px] aspect-[3/4] bg-gray-50 rounded-md overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.1)] mb-6 shrink-0">
-            {person.image ? (
-              <Image src={person.image} alt={person.name} fill className="object-cover" unoptimized />
-            ) : (
-              <div className="flex items-center justify-center w-full h-full text-gray-400">Нет фото</div>
-            )}
-          </div>
-          <div className="text-center w-full px-2">
-            <Text className="text-[#1A235E] font-bold text-[16px] leading-snug mb-1.5">{person.name}</Text>
-            <Text className="text-gray-500 text-[13.5px] mb-1">{person.role}</Text>
-            <Text className="text-gray-500 text-[13px]">{person.email}</Text>
-          </div>
-        </div>
+        <Link 
+          href={`/about/organigram/${person.id}`} 
+          key={person.id} 
+          style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+          className="group"
+        >
+          {/* ОБЩИЙ БЕЛЫЙ КОНТЕЙНЕР-КАРТОЧКА */}
+          <Box 
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              transition: 'all 0.3s ease', 
+              cursor: 'pointer',
+              backgroundColor: 'white', // Белый фон
+              borderRadius: '12px',      // Скругление
+              padding: '16px',          // Отступ внутри карточки
+              boxShadow: '0 10px 30px rgba(0,0,0,0.05)', // Легкая тень
+              height: '100%'
+            }} 
+            className="group-hover:-translate-y-2 group-hover:shadow-xl"
+          >
+            
+            {/* Контейнер фото (внутри карточки) */}
+            <Box style={{ 
+              position: 'relative', 
+              width: '100%', 
+              height: '300px', 
+              backgroundColor: '#f8f9fa', 
+              borderRadius: '8px', 
+              overflow: 'hidden', 
+              marginBottom: '20px' 
+            }}>
+              {person.image ? (
+                <Image src={person.image} alt={person.name} fill style={{ objectFit: 'cover' }} unoptimized />
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#adb5bd', fontSize: '14px' }}>Нет фото</div>
+              )}
+            </Box>
+            
+            {/* Текстовый блок */}
+            <Box style={{ padding: '0 4px', flex: 1 }}>
+              <Text fw={700} c="#1A235E" size="16px" lh={1.3} mb={8} className="group-hover:text-blue-700 transition-colors">
+                {person.name}
+              </Text>
+              <Text c="dimmed" size="14px" mb={4} fw={500}>{person.role}</Text>
+              <Text c="dimmed" size="13px">{person.email}</Text>
+            </Box>
+
+          </Box>
+        </Link>
       ))}
-    </div>
+    </SimpleGrid>
   );
 }

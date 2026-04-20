@@ -25,8 +25,8 @@ export function Hero() {
         <div className="bg-[#1A235E] p-8 md:p-12 text-white max-w-[600px] shadow-2xl rounded-sm">
           <Title 
             order={1} 
-            className="text-2xl md:text-4xl font-serif mb-6 leading-tight uppercase tracking-wide"
-          >
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
+            className="text-[32px] md:text-[35px] text-[#FFFFFF] uppercase tracking-wider mb-16">
             INAI: Создаем код будущего
           </Title>
           

@@ -28,7 +28,10 @@ export function ReasonsSection() {
       <Container size="lg">
         {/* ВЕРХНЯЯ ЧАСТЬ: Заголовок и миссия */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
-          <Title order={2} className="text-[42px] font-bold text-[#1A235E] leading-tight max-w-sm">
+          <Title 
+              order={2} 
+              style={{ fontFamily: "'Times New Roman', Times, serif" }}
+              className="text-[32px] md:text-[42px] text-[#1A235E] uppercase tracking-wider mb-16">
             Причины выбрать <br /> INAI.kg
           </Title>
           <Text className="text-gray-400 text-sm max-w-md leading-relaxed md:pt-4">

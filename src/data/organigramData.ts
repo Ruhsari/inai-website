@@ -33,58 +33,73 @@ export const leadershipData = [
       ]
     }
   },
-  
-  {
-    id: 2,
-    name: 'Тологонова Аида Мырзакановна',
-    role: 'Кандидат экономических наук',
-    email: 'rector@inai.kg',
-    image: '/images/rector.png',
-  }
+
 ];
 
 export const teachersData = [
   {
-    id: 1,
+    id: 'sarymsakova', // Уникальный ID для ссылки
     name: 'Сарымсакова Аэлита Женишевна',
     role: 'Преподаватель',
-    email: 'rector@inai.kg',
-    image: '/images/teacher-1.png', 
-  },
-  {
-    id: 2,
-    name: 'Сарымсакова Аэлита Женишевна',
-    role: 'Преподаватель',
-    email: 'rector@inai.kg',
+    email: 'rector@inai.kg', // На макете была указана эта почта
     image: '/images/teacher-1.png',
+    details: {
+      academicTitle: '—',
+      degree: '—',
+      phone: '+996 555 11 22 33', // Заполните реальными данными
+      education: [
+        '2010 - Название университета\nСпециальность'
+      ],
+      qualifications: [
+        {
+          year: '2022',
+          place: 'Место прохождения курсов',
+          topic: 'Тема повышения квалификации'
+        }
+      ],
+      achievements: []
+    }
   }
 ];
+
 
 export const projectBureauData = [
   {
-    id: 1,
+    id: 'ivanov',
     name: 'Иванов Иван Иванович',
-    role: 'Руководитель проектного бюро',
+    role: 'Руководитель',
     email: 'projects@inai.kg',
     image: '/images/teacher-1.png',
+    details: {
+      academicTitle: '',
+      degree: '',
+      phone: '+996 555 123 456',
+      education: ['2020 - КГТУ'],
+      qualifications: [],
+      achievements: []
+    }
   }
 ];
-
 
 
 export const staffData = [
   {
-    id: 1,
-    name: 'Имя Фамилия Сотрудника',
-    role: 'Должность (например, Секретарь)',
-    email: 'staff@inai.kg',
-    image: '/images/teacher-1.png', 
-  },
-  {
-    id: 2,
-    name: 'Имя Фамилия Сотрудника',
-    role: 'Должность (например, Бухгалтер)',
-    email: 'finance@inai.kg',
+    id: 'ivanova-m', 
+    name: 'Иванова Мария Петровна',
+    role: 'Секретарь учебной части',
+    email: 'm.ivanova@inai.kg',
     image: '/images/teacher-1.png',
+    details: {
+      academicTitle: '—',
+      degree: '—',
+      phone: '+996 312 00 00 00',
+      education: [
+        '2015 - Кыргызский национальный университет имени Жусупа Баласагына\nМенеджмент'
+      ],
+      qualifications: [],
+      achievements: [
+        'Благодарственное письмо от администрации INAI.KG за вклад в организацию учебного процесса, 2023'
+      ]
+    }
   }
 ];
