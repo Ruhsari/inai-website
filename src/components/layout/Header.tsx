@@ -1,6 +1,6 @@
 "use client";
 
-import { Group, Burger, Drawer, UnstyledButton, TextInput, ActionIcon, Menu, Divider, Stack, Text } from '@mantine/core';
+import { Group, Burger, Drawer, UnstyledButton, TextInput, ActionIcon, Menu, Divider, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSearch, IconSun, IconChevronDown, IconExternalLink } from '@tabler/icons-react';
 import Image from 'next/image';
@@ -11,7 +11,6 @@ const links = [
     {
         link: '/about',
         label: 'О нас',
-
         hasDropdown: true,
         sublinks: [
             { label: 'О нас', link: '/about' },
@@ -27,7 +26,7 @@ const links = [
         hasDropdown: true,
         sublinks: [
             { label: 'Бакалавриат', link: '/applicants/bachelor' },
-            { label: 'Магистратура', link: '/applicants/master-page' },
+            { label: 'Магистратура', link: '/applicants/master' },
             { label: 'Правила приема студентов', link: '/applicants/rules' },
             { label: 'Стипендия DAAD', link: '/applicants/daad' },
             { label: 'Учебные программы', link: '/applicants/programs' },
@@ -58,18 +57,15 @@ const links = [
 export function Header() {
     const [opened, { toggle, close }] = useDisclosure(false);
 
-    // Контент для выпадающего списка "Студентам"
     const StudentsDropdown = () => (
         <div className="p-1 min-w-[280px]">
             <Menu.Item component={Link} href="/students/profile" className="font-semibold text-blue-700">
                 Личный профиль
             </Menu.Item>
-
             <Divider label="Учебный процесс" labelPosition="left" my="xs" />
             <Menu.Item component={Link} href="/students/schedule">График учебного процесса</Menu.Item>
             <Menu.Item component={Link} href="/students/exams">График сессии</Menu.Item>
             <Menu.Item component={Link} href="/students/projects">График защиты курсовых проектов</Menu.Item>
-
             <Menu.Item
                 component="a"
                 href="https://lms.inai.kg/Account/Login?ReturnUrl=%2FStudentProfiles"
@@ -80,7 +76,6 @@ export function Header() {
                 Ebilim
             </Menu.Item>
             <Menu.Item component={Link} href="/students/rating">Рейтинг студентов</Menu.Item>
-
             <Divider label="Студенческая жизнь" labelPosition="left" my="xs" />
             <Menu.Item component={Link} href="/students/senate">Студенческий сенат</Menu.Item>
             <Menu.Item component={Link} href="/students/enactus">Энактус</Menu.Item>
@@ -95,7 +90,14 @@ export function Header() {
                 {/* ВЕРХНЯЯ ЧАСТЬ */}
                 <div className="flex items-center justify-between py-3 px-6">
                     <Link href="/" className="flex items-center">
-                        <Image src="/logo/inai-logo.svg" alt="INAI.KG" width={200} height={50} priority />
+                        <Image
+                            src="/logo/inai-logo.svg"
+                            alt="INAI.KG"
+                            width={200}
+                            height={50}
+                            priority
+                            style={{ height: 'auto' }}
+                        />
                     </Link>
 
                     <Group gap="sm" className="hidden md:flex">
@@ -144,9 +146,7 @@ export function Header() {
                             >
                                 <Menu.Target>
                                     <UnstyledButton
-                                        component={Link}
-                                        href={link.link}
-                                        className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-1"
+                                        className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-1 cursor-default"
                                     >
                                         {link.label} <IconChevronDown size={14} stroke={2} className="text-gray-400" />
                                     </UnstyledButton>
@@ -197,14 +197,20 @@ export function Header() {
                     <TextInput placeholder="Поиск по сайту" leftSection={<IconSearch size={16} />} radius="md" mb="sm" />
                     {links.map((link) => (
                         <div key={link.label} className="border-b border-gray-100 pb-2">
-                            <UnstyledButton
-                                component={Link}
-                                href={link.link}
-                                onClick={close}
-                                className="block py-2 font-semibold text-gray-800"
-                            >
-                                {link.label}
-                            </UnstyledButton>
+                            {link.hasDropdown ? (
+                                <div className="py-2 font-semibold text-gray-800">
+                                    {link.label}
+                                </div>
+                            ) : (
+                                <UnstyledButton
+                                    component={Link}
+                                    href={link.link}
+                                    onClick={close}
+                                    className="block py-2 font-semibold text-gray-800"
+                                >
+                                    {link.label}
+                                </UnstyledButton>
+                            )}
 
                             {link.hasDropdown && (
                                 <div className="pl-4 mt-1 flex flex-col gap-2">
@@ -212,10 +218,10 @@ export function Header() {
                                         <>
                                             <Link href="/students/profile" className="text-sm text-blue-600" onClick={close}>• Личный профиль</Link>
                                             <Link href="/students/schedule" className="text-sm text-gray-600" onClick={close}>• Учебный процесс</Link>
-                                            <Link href="https://lms.inai.kg/..." target="_blank" className="text-sm text-orange-600" onClick={close}>• Ebilim</Link>
+                                            <Link href="https://lms.inai.kg/" target="_blank" className="text-sm text-orange-600" onClick={close}>• Ebilim</Link>
                                         </>
                                     ) : (
-                                        link.sublinks?.slice(0, 3).map(sub => (
+                                        link.sublinks?.map(sub => (
                                             <Link key={sub.label} href={sub.link} className="text-sm text-gray-500" onClick={close}>
                                                 • {sub.label}
                                             </Link>
