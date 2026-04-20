@@ -1,0 +1,90 @@
+"use client";
+
+import { Container, Title, Text, Button, Group } from '@mantine/core';
+import Image from 'next/image';
+import { IconSchool, IconArrowUpRight } from '@tabler/icons-react';
+
+export function AboutSection() {
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      <Container size="lg">
+        <div className="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+          
+<div className="relative w-full md:w-1/2 h-[450px] md:h-[550px]">
+  
+  {/* Картинка на заднем плане */}
+  <div className="absolute top-0 left-0 w-[75%] aspect-square overflow-hidden">
+    <Image 
+      src="/images/photo_1.png" 
+      alt="VR Training at INAI" 
+      fill 
+      className="object-cover"
+    />
+  </div>
+  
+  {/* Картинка на переднем плане */}
+  <div className="absolute bottom-0 right-0 w-[65%] aspect-[4/5] overflow-hidden">
+    <Image 
+      src="/images/photo_2.png" 
+      alt="Students at INAI booth" 
+      fill 
+      className="object-cover"
+    />
+  </div>
+  
+</div>
+
+          {/* ПРАВАЯ ЧАСТЬ: Контент */}
+          <div className="w-full md:w-1/2 flex flex-col">
+            
+            {/* Подзаголовок с иконкой академической шапки */}
+            <Group gap={10} mb={20}>
+              <IconSchool size={28} className="text-[#1A235E]" stroke={1.5} />
+              <Text className="text-[#1A235E] font-bold text-sm tracking-wide">
+                О нашем институте
+              </Text>
+            </Group>
+
+            {/* Главный заголовок */}
+            <Title 
+              order={2} 
+              className="text-[38px] md:text-[52px] font-extrabold text-[#1A235E] leading-[1.1] mb-8"
+            >
+              Знакомство с нашим <br /> Институтом
+            </Title>
+            
+            {/* Блок описания с синей вертикальной линией */}
+            <div className="relative pl-8 mb-10">
+              {/* Акцентная линия */}
+              <div className="absolute left-0 top-1 bottom-1 w-[5px] bg-[#1A235E] rounded-full" />
+              
+              <Text className="text-gray-500 text-[16px] md:text-[18px] leading-[1.6]">
+                Кыргызско-Германский институт прикладной информатики (КГИПИ) — единственный вуз в образовательном секторе Кыргызстана, специализирующийся в области компьютерных наук.
+              </Text>
+            </div>
+
+            {/* Блок "Строим доверие" */}
+            <div className="mb-10">
+              <Text className="text-[#1A235E] font-bold text-2xl mb-1">
+                Строим доверие
+              </Text>
+              <Text className="text-gray-500 text-lg">
+                Мы стремимся к созданию доверия
+              </Text>
+            </div>
+
+            {/* Кнопка "Больше о нас" (выровнена по правому краю) */}
+            <Button 
+              size="lg"
+              className="bg-[#1A235E] hover:bg-[#283593] self-end px-12 h-14 rounded-md shadow-lg"
+              rightSection={<IconArrowUpRight size={22} />}
+            >
+              Больше о нас
+            </Button>
+            
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
