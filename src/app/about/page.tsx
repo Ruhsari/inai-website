@@ -9,7 +9,7 @@ export default function AboutPage() {
     <div className="bg-white py-16 md:py-24">
       <Container size="lg">
         
-        {/* ХЛЕБНЫЕ КРОШКИ / НАДЗАГОЛОВОК */}
+        {/* / НАДЗАГОЛОВОК */}
         <Group gap={8} mb={20}>
           <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
           <Text className="text-[#1A235E] font-bold text-sm tracking-wide uppercase">
@@ -20,8 +20,8 @@ export default function AboutPage() {
         {/* ГЛАВНЫЙ ЗАГОЛОВОК */}
         <Title 
           order={1} 
-          className="text-[36px] md:text-[48px] font-serif text-[#1A235E] leading-tight mb-12"
-        >
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          className="text-[32px] md:text-[42px] text-[#1A235E] uppercase tracking-wider mb-16">
           Знакомство с нашим Институтом
         </Title>
 

@@ -30,7 +30,10 @@ export function ProgramsBanner() {
 
             {/* Главный слоган с разными цветами */}
             <div className="mb-10">
-              <h2 className="text-[44px] md:text-[52px] font-bold leading-[1.15] text-[#1A235E]">
+              <h2 
+                style={{ fontFamily: "'Times New Roman', Times, serif" }} 
+                className="text-[44px] md:text-[52px] font-bold leading-[1.15] text-[#1A235E]"
+              >
                 <span className="text-[#333333]">Находи свою сферу.</span><br />
                 <span className="text-[#2B59C3]">Поступай.</span><br />
                 Интегрируйся.

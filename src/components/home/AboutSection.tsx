@@ -48,8 +48,9 @@ export function AboutSection() {
             {/* Главный заголовок */}
             <Title 
               order={2} 
-              className="text-[38px] md:text-[52px] font-extrabold text-[#1A235E] leading-[1.1] mb-8"
-            >
+              style={{ fontFamily: "'Times New Roman', Times, serif" }}
+              className="text-[32px] md:text-[42px] text-[#1A235E] uppercase tracking-wider mb-16">
+
               Знакомство с нашим <br /> Институтом
             </Title>
             
