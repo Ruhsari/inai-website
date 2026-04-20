@@ -24,7 +24,7 @@ export function StaffTab({ data }: { data: StaffMember[] }) {
                   alt={person.name} 
                   fill 
                   className="object-cover"
-                  unoptimized // Помогает, если с картинками пока есть проблемы
+                  unoptimized 
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-gray-400 bg-gray-100 italic text-sm">
