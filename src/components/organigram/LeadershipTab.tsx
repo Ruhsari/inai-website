@@ -1,45 +1,41 @@
-import { Text } from '@mantine/core';
+import { Text, SimpleGrid, Box } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link'; // 1. ДОБАВЛЯЕМ ИМПОРТ
 
 export function LeadershipTab({ data }: { data: any[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12 w-full">
+    <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={40}>
       {data.map((person) => (
-        /* min-w-[240px] ЗАЩИЩАЕТ КАРТОЧКУ ОТ СЖАТИЯ */
-        <div key={person.id} className="flex flex-col w-full min-w-[240px] max-w-[300px] mx-auto md:mx-0">
-          
-          {/* Контейнер фото */}
-          <div className="relative w-full h-[340px] bg-gray-50 rounded-md overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.1)] mb-6 shrink-0">
-            {person.image ? (
-              <Image 
-                src={person.image} 
-                alt={person.name} 
-                fill 
-                className="object-cover"
-                unoptimized
-              />
-            ) : (
-              <div className="flex items-center justify-center w-full h-full text-gray-400 bg-gray-100 text-sm italic">
-                Фото отсутствует
-              </div>
-            )}
-          </div>
-          
-          {/* Контейнер текста */}
-          <div className="w-full px-2 text-center md:text-left">
-            <Text className="text-[#1A235E] font-bold text-[16px] leading-snug mb-1.5 break-words">
-              {person.name}
-            </Text>
-            <Text className="text-gray-500 text-[13.5px] mb-1 break-words">
-              {person.role}
-            </Text>
-            <Text className="text-gray-500 text-[13px] break-words">
-              {person.email}
-            </Text>
-          </div>
-          
-        </div>
+        // 2. ОБРАЧИВАЕМ В LINK И УКАЗЫВАЕМ ПУТЬ
+        <Link 
+          href={`/about/organigram/${person.id}`} 
+          key={person.id} 
+          style={{ textDecoration: 'none', color: 'inherit' }}
+          className="group" // Добавляем класс для эффекта при наведении
+        >
+          <Box style={{ display: 'flex', flexDirection: 'column', transition: 'transform 0.2s', cursor: 'pointer' }} className="group-hover:-translate-y-1">
+            
+            {/* Контейнер фото */}
+            <Box style={{ position: 'relative', width: '100%', maxWidth: '280px', height: '340px', backgroundColor: '#f8f9fa', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', marginBottom: '16px' }}>
+              {person.image ? (
+                <Image src={person.image} alt={person.name} fill style={{ objectFit: 'cover' }} unoptimized />
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#adb5bd' }}>Нет фото</div>
+              )}
+            </Box>
+            
+            {/* Текст */}
+            <Box style={{ padding: '0 8px' }}>
+              <Text fw={700} c="#1A235E" size="16px" lh={1.3} mb={4} className="group-hover:text-blue-600 transition-colors">
+                {person.name}
+              </Text>
+              <Text c="dimmed" size="14px" mb={4}>{person.role}</Text>
+              <Text c="dimmed" size="13px">{person.email}</Text>
+            </Box>
+
+          </Box>
+        </Link>
       ))}
-    </div>
+    </SimpleGrid>
   );
 }
