@@ -25,8 +25,6 @@ const links = [
         label: 'Абитуриентам',
         hasDropdown: true,
         sublinks: [
-            { label: 'Бакалавриат', link: '/applicants/bachelor' },
-            { label: 'Магистратура', link: '/applicants/master' },
             { label: 'Правила приема студентов', link: '/applicants/rules' },
             { label: 'Стипендия DAAD', link: '/applicants/daad' },
             { label: 'Учебные программы', link: '/applicants/programs' },
