@@ -61,6 +61,7 @@ export function Header() {
                 Личный профиль
             </Menu.Item>
             <Divider label="Учебный процесс" labelPosition="left" my="xs" />
+            <Menu.Item component={Link} href="/students/daad">ДААД стипендии</Menu.Item>
             <Menu.Item component={Link} href="/students/schedule">График учебного процесса</Menu.Item>
             <Menu.Item component={Link} href="/students/exams">График сессии</Menu.Item>
             <Menu.Item component={Link} href="/students/projects">График защиты курсовых проектов</Menu.Item>
