@@ -39,7 +39,6 @@ export default function StudentSenatePage() {
 
         <Box style={{ display: 'flex', flexDirection: 'column', gap: '32px', marginBottom: '80px' }}>
           {senateDirections.map((direction, index) => {
-            // Чередование блоков: четные - картинка слева, нечетные - картинка справа
             const isImageLeft = index % 2 === 0;
 
             return (
@@ -53,14 +52,12 @@ export default function StudentSenatePage() {
                 }}
               >
                 <Grid align="center" gutter={40}>
-                  {/* ИЗОБРАЖЕНИЕ */}
                   <Grid.Col span={{ base: 12, md: 5 }} order={{ base: 1, md: isImageLeft ? 1 : 2 }}>
                     <Box style={{ position: 'relative', width: '100%', height: '240px', borderRadius: '16px', overflow: 'hidden' }}>
                       <Image src={direction.image} alt={direction.title} fill style={{ objectFit: 'contain' }} unoptimized />
                     </Box>
                   </Grid.Col>
 
-                  {/* ТЕКСТ И КНОПКА */}
                   <Grid.Col span={{ base: 12, md: 7 }} order={{ base: 2, md: isImageLeft ? 2 : 1 }}>
                     <Box style={{ padding: '0 20px' }}>
                       <Title order={3} c="#1A235E" size="24px" mb={16}>
@@ -70,7 +67,6 @@ export default function StudentSenatePage() {
                         {direction.description}
                       </Text>
                       
-                      {/* Ссылка на будущую страницу клуба */}
                       <Link href={`/students/clubs/${direction.id}`} style={{ textDecoration: 'none' }}>
                         <Button 
                           color="#212529" 
@@ -113,7 +109,6 @@ export default function StudentSenatePage() {
                 alignItems: 'center'
               }}
             >
-              {/* Фото с темно-синим фоном (имитация дизайна карточки) */}
               <Box style={{ 
                 position: 'relative', 
                 width: '120px', 
@@ -126,7 +121,6 @@ export default function StudentSenatePage() {
                 <Image src={member.image} alt={member.name} fill style={{ objectFit: 'cover' }} unoptimized />
               </Box>
 
-              {/* Информация о члене команды */}
               <Box style={{ flex: 1 }}>
                 <Title order={4} c="#212529" size="18px" mb={8} lh={1.3}>
                   {member.name}
@@ -135,17 +129,20 @@ export default function StudentSenatePage() {
                   {member.role}
                 </Text>
 
-                <Link href={`/students/clubs/${member.clubId}`} style={{ textDecoration: 'none' }}>
-                  <Button 
-                    variant="outline" 
-                    color="#212529" 
-                    radius="md" 
-                    size="xs"
-                    style={{ borderWidth: '1.5px' }}
-                  >
-                    Узнать о клубе
-                  </Button>
-                </Link>
+                {/* ИСПРАВЛЕНО: добавлено условие скрытия кнопки и изменен путь на /students/senate/ */}
+                {member.clubId !== 'senate' && (
+                  <Link href={`/students/clubs/${member.clubId}`} style={{ textDecoration: 'none' }}>
+                    <Button 
+                      variant="outline" 
+                      color="#212529" 
+                      radius="md" 
+                      size="xs"
+                      style={{ borderWidth: '1.5px' }}
+                    >
+                      Узнать о клубе
+                    </Button>
+                  </Link>
+                )}
               </Box>
             </Box>
           ))}

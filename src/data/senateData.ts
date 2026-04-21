@@ -55,7 +55,7 @@ export const senateTeam = [
     name: 'Соловьёва Яна Дмитриевна',
     role: 'Заместитель председателя студенческого сената',
     email: 'senate@inai.kg',
-    image: '/images/team-1.svg',
+    image: '/images/team-2.svg',
     clubId: 'senate'
   },
   {
@@ -63,7 +63,7 @@ export const senateTeam = [
     name: 'Жылдызбекова Асель Жылдызбековна',
     role: 'Руководитель культурно-массового направления',
     email: 'culture@inai.kg',
-    image: '/images/team-1.svg',
+    image: '/images/team-3.svg',
     clubId: 'culture'
   },
   {
@@ -71,7 +71,7 @@ export const senateTeam = [
     name: 'Эсенбекова Аэлина Эсенбековна',
     role: 'Руководитель PR-направления',
     email: 'pr@inai.kg',
-    image: '/images/team-1.svg',
+    image: '/images/team-4.svg',
     clubId: 'pr'
   },
   {
@@ -79,7 +79,7 @@ export const senateTeam = [
     name: 'Рашидов Дамир Рашидович',
     role: 'Руководитель спортивного направления',
     email: 'sport@inai.kg',
-    image: '/images/team-1.svg',
+    image: '/images/team-5.svg',
     clubId: 'sport'
   },
   {
@@ -87,7 +87,7 @@ export const senateTeam = [
     name: 'Соколов Алексей',
     role: 'Руководитель антикоррупционного клуба',
     email: 'anticorruption@inai.kg',
-    image: '/images/team-1.svg',
+    image: '/images/team-6.svg',
     clubId: 'anticorruption'
   }
 ];
