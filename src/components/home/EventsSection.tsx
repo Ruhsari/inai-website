@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Container, Title, Text, Group, UnstyledButton } from '@mantine/core';
 import Image from 'next/image';
 import { IconArrowRight } from '@tabler/icons-react';
+import Link from 'next/link';
 
 // Категории для фильтрации
 const categories = ['Предстоящие', 'Хакатоны', 'Конференции', 'Студенческая жизнь'];
@@ -115,6 +116,17 @@ export function EventsSection() {
               В данной категории пока нет мероприятий.
             </Text>
           )}
+        </div>
+        
+        {/* НОВАЯ КНОПКА "БОЛЬШЕ МЕРОПРИЯТИЙ" (Выровнена по правому краю) */}
+        <div className="mt-12 flex justify-end">
+          <Link 
+            href="#" // Сюда можно будет вставить ссылку на страницу со всеми мероприятиями
+            className="flex items-center gap-3 bg-[#1A235E] text-white px-8 py-3.5 rounded-md text-[15px] font-semibold hover:bg-[#11183b] transition-colors duration-200 shadow-sm"
+          >
+            Больше мероприятий
+            <IconArrowRight size={18} stroke={2} />
+          </Link>
         </div>
 
       </Container>
