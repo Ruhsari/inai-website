@@ -11,7 +11,7 @@ export function Hero() {
       {/* 1. Фоновое изображение */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
-          src="/images/hero-bg.png"
+          src="/images/hero-bg.svg"
           alt="Студенты INAI"
           fill
           priority
