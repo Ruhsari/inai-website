@@ -27,7 +27,7 @@ export default function AboutPage() {
 
         {/* АКЦЕНТНЫЙ БЛОК (С синей линией) */}
         <div className="relative pl-8 py-2 mb-12">
-          <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[#2B59C3]" />
+          <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[#141A51]" />
           <Text className="text-gray-600 text-[18px] md:text-[20px] leading-relaxed font-medium">
             Кыргызско-Германский институт прикладной информатики (КГИПИ) — единственный вуз 
             в образовательном секторе Кыргызстана, специализирующийся в области компьютерных наук.
