@@ -19,10 +19,10 @@ export function EventsSection() {
     <section className="py-24 bg-[#FAFAFA]">
       <Container size="lg">
         
-        {/* ЗАГОЛОВОК */}
+        {/* ЗАГОЛОВОК СЕКЦИИ */}
         <Title 
           order={2} 
-          mb={30} 
+          style={{ marginBottom: '30px' }}
           className="text-[44px] md:text-[52px] font-extrabold text-[#1A235E]"
         >
           Мероприятия
@@ -66,15 +66,25 @@ export function EventsSection() {
 
               {/* Правая часть: Контент */}
               <div className="w-full md:w-[55%] flex flex-col justify-center py-4 pr-4">
-                <Title order={3} className="text-[#1A235E] font-bold text-2xl md:text-[28px] leading-tight mb-4">
+                
+                {/* 1. ЗАГОЛОВОК (Жесткий отступ 24px вниз) */}
+                <Title 
+                  order={3} 
+                  style={{ marginBottom: '24px' }}
+                  className="text-[#1A235E] font-bold text-2xl md:text-[28px] leading-tight"
+                >
                   {event.title}
                 </Title>
                 
-                <Text className="text-gray-400 text-[15px] leading-relaxed mb-8 line-clamp-4">
+                {/* 2. ТЕКСТ (Жесткий отступ 40px вниз) */}
+                <Text 
+                  style={{ marginBottom: '40px' }}
+                  className="text-gray-400 text-[15px] leading-relaxed line-clamp-4"
+                >
                   {event.description}
                 </Text>
 
-                {/* Интерактивная кнопка-ссылка */}
+                {/* 3. КНОПКА-ССЫЛКА */}
                 <Group gap="md" className="cursor-pointer group w-fit">
                   <div className="w-12 h-12 rounded-full bg-[#333333] flex items-center justify-center text-white group-hover:bg-[#1A235E] transition-colors duration-300">
                     <IconArrowRight size={20} stroke={2} />

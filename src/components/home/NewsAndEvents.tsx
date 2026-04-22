@@ -3,39 +3,17 @@
 import { Container, Title, Text, Button, ActionIcon } from '@mantine/core';
 import Image from 'next/image';
 import { IconArrowRight } from '@tabler/icons-react';
+import Link from 'next/link';
 
-const newsItems = [
-  {
-    id: 1,
-    title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
-    image: '/images/news-1.png', 
-  },
-  {
-    id: 2,
-    title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
-    image: '/images/news-2.png',
-  },
-  {
-    id: 3,
-    title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
-    image: '/images/news-3.png',
-  },
-  {
-    id: 4,
-    title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать...',
-    image: '/images/news-4.png',
-  },
-];
+// Импортируем данные и тип из внешнего файла
+// Проверьте путь (../../data/newsData), он должен соответствовать расположению файла
+import { newsData, NewsItem } from '../../data/newsData';
 
 export function NewsAndEvents() {
   return (
     <section className="relative w-full overflow-hidden">
       
-      {/* ВЕРХНЯЯ ЧАСТЬ: Белый фон и Заголовок слева сверху */}
+      {/* ВЕРХНЯЯ ЧАСТЬ: Белый фон и Заголовок */}
       <div className="bg-white pt-24 pb-48">
         <Container size="lg">
           <Title 
@@ -62,21 +40,34 @@ export function NewsAndEvents() {
 
         <Container size="lg" className="relative z-10">
           
-          {/* СЕТКА КАРТОЧЕК (наезжает на белый фон) */}
+          {/* СЕТКА КАРТОЧЕК: теперь берем данные из newsData */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-64 mb-16">
-            {newsItems.map((item) => (
+            {newsData.slice(0, 4).map((item: NewsItem) => (
               <div 
                 key={item.id} 
                 className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.15)] flex flex-col h-[460px] transition-all duration-300 hover:-translate-y-2 cursor-pointer group"
               >
                 {/* Картинка новости */}
                 <div className="relative h-48 w-full shrink-0">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <Image 
+                    src={item.image} 
+                    alt={item.title} 
+                    fill 
+                    className="object-cover"
+                    unoptimized 
+                  />
                 </div>
 
                 {/* Текст новости */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h4 className="text-[#1A235E] font-bold text-[15px] leading-snug mb-3">
+                  {/* Дата новости (если она есть в newsData) */}
+                  {item.date && (
+                    <Text size="xs" c="dimmed" mb={8} fw={500}>
+                      {item.date}
+                    </Text>
+                  )}
+
+                  <h4 className="text-[#1A235E] font-bold text-[15px] leading-snug mb-3 line-clamp-2">
                     {item.title}
                   </h4>
                   <p className="text-gray-400 text-[13px] leading-relaxed line-clamp-4 flex-grow">
@@ -97,6 +88,8 @@ export function NewsAndEvents() {
           {/* КНОПКА "Все новости" */}
           <div className="flex justify-end mt-8">
             <Button 
+              component={Link}
+              href="/events" // Ссылка на страницу всех новостей
               variant="outline" 
               color="white"
               size="md"
