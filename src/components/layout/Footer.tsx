@@ -55,12 +55,6 @@ export function Footer() {
           
         </div>
 
-        {/* Копирайт */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <Text size="sm" className="text-gray-500">
-            © 2025 INAI.KG. Все права защищены.
-          </Text>
-        </div>
       </Container>
     </footer>
   );

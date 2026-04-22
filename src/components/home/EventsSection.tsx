@@ -1,47 +1,24 @@
 "use client";
 
 import { useState } from 'react';
-import { Container, Title, Text, Group, UnstyledButton } from '@mantine/core';
+import { Container, Title, Text, Group } from '@mantine/core';
 import Image from 'next/image';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 
-// Категории для фильтрации
-const categories = ['Предстоящие', 'Хакатоны', 'Конференции', 'Студенческая жизнь'];
-
-// Временные данные мероприятий
-const events = [
-  {
-    id: 1,
-    category: 'Хакатоны',
-    title: 'Внутриинститутский и межинститутский Хакатон',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать инновационные проекты, решать реальные задачи и показать силу командной работы.',
-    image: '/images/ev-1.png',
-  },
-  {
-    id: 2,
-    category: 'Студенческая жизнь',
-    title: 'День открытых дверей в INAI!',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать инновационные проекты, решать реальные задачи и показать силу командной работы. Хакатон',
-    image: '/images/ev-2.png',
-  },
-  {
-    id: 3,
-    category: 'Студенческая жизнь',
-    title: 'Благотворительная ярмарка в поддержку детского дома',
-    description: 'Готовы бросить вызов своим идеям и навыкам? Тогда наш хакатон — именно для вас! Это событие объединяет студентов разных направлений и институтов, чтобы вместе создавать инновационные проекты, решать реальные задачи и показать силу командной работы. Хакатон',
-    image: '/images/ev-3.png',
-  },
-];
+// ИСПРАВЛЕННЫЙ ПУТЬ: поднимаемся на 2 уровня вверх до папки data
+import { eventsData, eventCategories, type EventItem } from '../../data/eventsData';
 
 export function EventsSection() {
-  const [activeTab, setActiveTab] = useState('Предстоящие');
+  const [activeTab, setActiveTab] = useState<string>('Предстоящие');
 
-  // Логика фильтрации: если "Предстоящие", показываем все (или можно настроить свою логику), 
-  // иначе фильтруем по категории
+  // Отбираем только "Мероприятия" (без новостей)
+  const onlyEvents = eventsData.filter((item: EventItem) => item.type === 'event');
+
+  // Фильтруем по выбранной вкладке
   const filteredEvents = activeTab === 'Предстоящие' 
-    ? events 
-    : events.filter(event => event.category === activeTab);
+    ? onlyEvents 
+    : onlyEvents.filter((event: EventItem) => event.category === activeTab);
 
   return (
     <section className="py-24 bg-[#FAFAFA]">
@@ -52,9 +29,9 @@ export function EventsSection() {
           Мероприятия
         </Title>
 
-{/* ФИЛЬТРЫ (Вкладки) */}
+        {/* ФИЛЬТРЫ (Вкладки) */}
         <div className="flex flex-wrap gap-3 mb-14">
-          {categories.map((category) => (
+          {eventCategories.map((category: string) => (
             <button
               key={category}
               type="button"
@@ -72,7 +49,7 @@ export function EventsSection() {
 
         {/* СПИСОК КАРТОЧЕК */}
         <div className="flex flex-col gap-8">
-          {filteredEvents.map((event) => (
+          {filteredEvents.map((event: EventItem) => (
             <div 
               key={event.id}
               className="bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden flex flex-col md:flex-row p-4 md:p-6 gap-8 items-center"
@@ -84,6 +61,7 @@ export function EventsSection() {
                   alt={event.title} 
                   fill 
                   className="object-cover"
+                  unoptimized
                 />
               </div>
 
@@ -118,10 +96,10 @@ export function EventsSection() {
           )}
         </div>
         
-        {/* НОВАЯ КНОПКА "БОЛЬШЕ МЕРОПРИЯТИЙ" (Выровнена по правому краю) */}
+        {/* КНОПКА "БОЛЬШЕ МЕРОПРИЯТИЙ" */}
         <div className="mt-12 flex justify-end">
           <Link 
-            href="#" // Сюда можно будет вставить ссылку на страницу со всеми мероприятиями
+            href="/events"
             className="flex items-center gap-3 bg-[#1A235E] text-white px-8 py-3.5 rounded-md text-[15px] font-semibold hover:bg-[#11183b] transition-colors duration-200 shadow-sm"
           >
             Больше мероприятий
