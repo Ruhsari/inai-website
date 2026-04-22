@@ -50,7 +50,9 @@ export function ProgramsBanner() {
 
             <Button 
               size="lg"
-              className="bg-[#1A235E] hover:bg-[#283593] w-fit px-8 h-14 rounded-sm shadow-md"
+              color="#141A51" // Жестко задаем темно-синий цвет здесь
+              radius="sm"
+              className="w-fit px-8 h-14 shadow-md transition-transform hover:-translate-y-1"
               rightSection={<IconArrowUpRight size={20} />}
             >
               Узнать больше о программах

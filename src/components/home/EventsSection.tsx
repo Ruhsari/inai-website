@@ -6,26 +6,25 @@ import Image from 'next/image';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 
-// ИСПРАВЛЕННЫЙ ПУТЬ: поднимаемся на 2 уровня вверх до папки data
-import { eventsData, eventCategories, type EventItem } from '../../data/eventsData';
+import { eventsData, eventCategories, EventItem } from '../../data/eventsData';
 
 export function EventsSection() {
   const [activeTab, setActiveTab] = useState<string>('Предстоящие');
 
-  // Отбираем только "Мероприятия" (без новостей)
-  const onlyEvents = eventsData.filter((item: EventItem) => item.type === 'event');
-
-  // Фильтруем по выбранной вкладке
   const filteredEvents = activeTab === 'Предстоящие' 
-    ? onlyEvents 
-    : onlyEvents.filter((event: EventItem) => event.category === activeTab);
+    ? eventsData 
+    : eventsData.filter((event: EventItem) => event.category === activeTab);
 
   return (
     <section className="py-24 bg-[#FAFAFA]">
       <Container size="lg">
         
         {/* ЗАГОЛОВОК */}
-        <Title order={2} className="text-[44px] md:text-[52px] font-extrabold text-[#1A235E] mb-10">
+        <Title 
+          order={2} 
+          mb={30} 
+          className="text-[44px] md:text-[52px] font-extrabold text-[#1A235E]"
+        >
           Мероприятия
         </Title>
 
