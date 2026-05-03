@@ -17,3 +17,28 @@ body {
     border-width: 0;
   }
 }
+
+[data-active].mantine-Tabs-tab {
+  color: #141A51 !important;
+  border-bottom: 3px solid #141A51 !important;
+}
+
+.mantine-Tabs-tab:not([data-active]) {
+  color: rgba(29, 180, 173, 0.65) !important;
+  border-bottom: 3px solid transparent !important;
+}
+
+
+body:has(#login-page) {
+  background-color: #141A51 !important;
+}
+
+body:has(#login-page) header {
+  background-color: #141A51 !important;
+  box-shadow: none !important;
+}
+
+body:has(#login-page) header > div {
+  background-color: #fff !important;
+  border: 1px solid #E9ECEF !important;
+}

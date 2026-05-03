@@ -6,7 +6,6 @@ import { IconSchool } from '@tabler/icons-react';
 import Image from 'next/image';
 import { notFound, useParams } from 'next/navigation';
 
-// Импорт данных
 import { clubsData, groupOptions, clubOptions } from '../../../../data/clubData';
 
 export default function ClubDetailsPage() {
