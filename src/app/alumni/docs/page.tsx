@@ -5,12 +5,16 @@ import { Container, Title, Text, Group, Box, Grid, UnstyledButton, List } from '
 import { IconSchool } from '@tabler/icons-react';
 import Image from 'next/image';
 
-// Импортируем данные (проверь путь до файла)
 import { alumniData, alumniDocsData, type AlumniItem } from '../../../data/alumniData';
 
 export default function DocumentsPage() {
-  // ИЗМЕНЕНИЕ: Теперь по умолчанию активна вкладка "Нормативные документы"
+  // В этом файле по умолчанию активны документы
   const [activeMenu, setActiveMenu] = useState('Нормативные документы');
+
+  // ТА САМАЯ ЛОГИКА ДЛЯ ХЛЕБНЫХ КРОШЕК
+  const breadcrumbText = activeMenu === 'Ассоциация выпускников' 
+    ? 'Ассоциация выпускников' 
+    : 'Нормативные документы Ассоциации';
 
   return (
     <div style={{ backgroundColor: '#FAFAFA', padding: '80px 0', minHeight: '100vh' }}>
@@ -20,7 +24,7 @@ export default function DocumentsPage() {
         <Group gap={8} mb={60}>
           <IconSchool size={20} color="#1A235E" stroke={1.5} />
           <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
-            Выпускникам / {activeMenu}
+            Выпускникам / {breadcrumbText}
           </Text>
         </Group>
 
@@ -39,7 +43,7 @@ export default function DocumentsPage() {
                   fontWeight: activeMenu === 'Ассоциация выпускников' ? 700 : 500,
                   fontSize: '16px',
                   transition: 'all 0.2s ease',
-                  backgroundColor: activeMenu === 'Ассоциация выпускников' ? '#f1f3f5' : 'transparent'
+                  backgroundColor: 'transparent' // <-- Изменено
                 }}
               >
                 Ассоциация выпускников
@@ -54,7 +58,7 @@ export default function DocumentsPage() {
                   fontWeight: activeMenu === 'Нормативные документы' ? 700 : 500,
                   fontSize: '16px',
                   transition: 'all 0.2s ease',
-                  backgroundColor: activeMenu === 'Нормативные документы' ? '#f1f3f5' : 'transparent'
+                  backgroundColor: 'transparent' // <-- Изменено
                 }}
               >
                 Нормативные документы Ассоциации
@@ -132,7 +136,7 @@ export default function DocumentsPage() {
                   {alumniDocsData.docTitle}
                 </Title>
 
-                {/* Рендерим каждую секцию данных (1, 2, 3, 4...) */}
+                {/* Рендерим каждую секцию данных */}
                 {alumniDocsData.sections.map((section, index) => (
                   <Box key={index} mb={40}>
                     <Title order={3} c="#212529" size="18px" mb={16}>

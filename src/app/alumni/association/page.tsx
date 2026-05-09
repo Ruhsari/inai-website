@@ -1,16 +1,19 @@
 "use client";
 
 import { useState } from 'react';
-// ИСПРАВЛЕНО: Добавил List в импорты из @mantine/core
 import { Container, Title, Text, Group, Box, Grid, UnstyledButton, List } from '@mantine/core';
 import { IconSchool } from '@tabler/icons-react';
 import Image from 'next/image';
 
-// Импортируем обе константы из файла data
 import { alumniData, alumniDocsData, type AlumniItem } from '../../../data/alumniData';
 
 export default function AlumniAssociationPage() {
   const [activeMenu, setActiveMenu] = useState('Ассоциация выпускников');
+
+  // Определяем текст для хлебных крошек в зависимости от выбранного меню
+  const breadcrumbText = activeMenu === 'Ассоциация выпускников' 
+    ? 'Ассоциация выпускников' 
+    : 'Нормативные документы Ассоциации';
 
   return (
     <div style={{ backgroundColor: '#FAFAFA', padding: '80px 0', minHeight: '100vh' }}>
@@ -20,7 +23,7 @@ export default function AlumniAssociationPage() {
         <Group gap={8} mb={60}>
           <IconSchool size={20} color="#1A235E" stroke={1.5} />
           <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
-            Выпускникам / Ассоциация выпускников
+            Выпускникам / {breadcrumbText}
           </Text>
         </Group>
 
@@ -39,7 +42,7 @@ export default function AlumniAssociationPage() {
                   fontWeight: activeMenu === 'Ассоциация выпускников' ? 700 : 500,
                   fontSize: '16px',
                   transition: 'all 0.2s ease',
-                  backgroundColor: activeMenu === 'Ассоциация выпускников' ? '#f1f3f5' : 'transparent'
+                  backgroundColor: 'transparent' // <-- Изменено
                 }}
               >
                 Ассоциация выпускников
@@ -54,7 +57,7 @@ export default function AlumniAssociationPage() {
                   fontWeight: activeMenu === 'Нормативные документы' ? 700 : 500,
                   fontSize: '16px',
                   transition: 'all 0.2s ease',
-                  backgroundColor: activeMenu === 'Нормативные документы' ? '#f1f3f5' : 'transparent'
+                  backgroundColor: 'transparent' // <-- Изменено
                 }}
               >
                 Нормативные документы Ассоциации
@@ -114,7 +117,7 @@ export default function AlumniAssociationPage() {
               </Box>
             )}
 
-            {/* ВКЛАДКА 2: Нормативные документы (НОВОЕ С МАКЕТА) */}
+            {/* ВКЛАДКА 2: Нормативные документы */}
             {activeMenu === 'Нормативные документы' && (
               <Box>
                 {/* Главный заголовок */}

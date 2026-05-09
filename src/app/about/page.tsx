@@ -6,14 +6,14 @@ import { IconSchool } from '@tabler/icons-react';
 
 export default function AboutPage() {
   return (
+    // ИСПРАВЛЕНИЕ: Убрана случайная буква "ы" в классах отступов
     <div className="bg-white py-16 md:py-24">
       <Container size="lg">
         
-        {/* / НАДЗАГОЛОВОК */}
+        {/* Хлебные крошки (Здесь уже стоят правильные серые классы!) */}
         <Group gap={8} mb={20}>
           <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
-          <Text className="text-[#1A235E] font-bold text-sm tracking-wide uppercase">
-            О нас
+          <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>            О нас
           </Text>
         </Group>
 

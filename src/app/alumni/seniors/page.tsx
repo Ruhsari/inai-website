@@ -23,7 +23,7 @@ export default function GraduatesInfoPage() {
         {/* Хлебные крошки */}
         <Group gap={8} mb={20}>
           <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
-          <Text className="text-gray-400 font-medium text-sm tracking-wide uppercase">
+          <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
             Выпускникам / {breadcrumbText}
           </Text>
         </Group>
@@ -41,7 +41,7 @@ export default function GraduatesInfoPage() {
                   color: activeTab === '4-курс' ? '#1A235E' : '#868e96',
                   fontWeight: activeTab === '4-курс' ? 700 : 500,
                   fontSize: '15px',
-                  backgroundColor: activeTab === '4-курс' ? '#f8f9fa' : 'transparent',
+                  backgroundColor: 'transparent', // <-- Убрали серый фон
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -56,7 +56,7 @@ export default function GraduatesInfoPage() {
                   color: activeTab === 'магистратура' ? '#1A235E' : '#868e96',
                   fontWeight: activeTab === 'магистратура' ? 700 : 500,
                   fontSize: '15px',
-                  backgroundColor: activeTab === 'магистратура' ? '#f8f9fa' : 'transparent',
+                  backgroundColor: 'transparent', // <-- Убрали серый фон
                   transition: 'all 0.2s ease'
                 }}
               >

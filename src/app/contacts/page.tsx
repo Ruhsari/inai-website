@@ -13,8 +13,8 @@ export default function ContactsPage() {
                 {/* Хлебные крошки */}
                 <Group gap={8} mb={24}>
                     <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
-                    <Text className="text-gray-500 font-medium text-sm tracking-wide">
-                        Главная/Контакты
+                    <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
+                        Главная / Контакты
                     </Text>
                 </Group>
 
