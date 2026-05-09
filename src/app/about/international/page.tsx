@@ -22,11 +22,11 @@ export default function InternationalPage() {
         <div className="bg-white py-16 md:py-24 min-h-screen w-full">
             <Container size="lg" className="w-full max-w-[1200px] mx-auto">
 
-                {/* Хлебные крошки: слово 'Органиграмма' удалено */}
+                {/* ИСПРАВЛЕННЫЕ ХЛЕБНЫЕ КРОШКИ */}
                 <Group gap={8} mb={24}>
                     <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
-                    <Text className="text-gray-500 font-medium text-sm tracking-wide uppercase">
-                        {activeTab}
+                    <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
+                        Международное сотрудничество / {activeTab}
                     </Text>
                 </Group>
 

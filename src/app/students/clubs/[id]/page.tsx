@@ -5,6 +5,7 @@ import { Container, Title, Text, Group, Box, Grid, List, TextInput, Select, Mult
 import { IconSchool } from '@tabler/icons-react';
 import Image from 'next/image';
 import { notFound, useParams } from 'next/navigation';
+import Link from 'next/link';
 
 import { clubsData, groupOptions, clubOptions } from '../../../../data/clubData';
 
@@ -59,9 +60,41 @@ export default function ClubDetailsPage() {
         {/* Хлебные крошки */}
         <Group gap={8} mb={40}>
           <IconSchool size={20} color="#1A235E" stroke={1.5} />
-          <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
-            Студентам / Студенческий сенат / {club.title}
-          </Text>
+          <Group gap={6}>
+            {/* Просто текст (раздел) */}
+            <Text 
+              c="dimmed" 
+              fw={500} 
+              size="sm" 
+              tt="uppercase" 
+              style={{ letterSpacing: '1px' }}
+            >
+              Студентам
+            </Text>
+            
+            <Text c="dimmed" fw={500} size="sm" tt="uppercase"> / </Text>
+            
+            {/* Кликабельная ссылка на страницу Сената */}
+            <Text 
+              component={Link} 
+              href="/students/senate" 
+              c="dimmed" 
+              fw={500} 
+              size="sm" 
+              tt="uppercase" 
+              style={{ letterSpacing: '1px', transition: 'color 0.2s' }}
+              className="hover:text-[#1A235E]"
+            >
+              Студенческий сенат
+            </Text>
+            
+            <Text c="dimmed" fw={500} size="sm" tt="uppercase"> / </Text>
+            
+            {/* Текущая страница */}
+            <Text c="#1A235E" fw={600} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
+              {club.title}
+            </Text>
+          </Group>
         </Group>
 
         {/* Заголовок с желтым подчеркиванием */}
@@ -75,7 +108,6 @@ export default function ClubDetailsPage() {
 
         {/* Основные направления */}
         <Title order={2} style={{ fontSize: '22px' }} c="#212529" mb={24}>Основные направления деятельности</Title>
-        {/* ИСПРАВЛЕНИЕ: size="md" вместо size="16px" */}
         <List spacing="sm" size="md" c="#495057" mb={60} style={{ paddingLeft: '20px' }}>
           {club.activities.map((act: string, idx: number) => (
             <List.Item key={idx}>{act}</List.Item>
@@ -87,7 +119,6 @@ export default function ClubDetailsPage() {
           <Grid.Col span={{ base: 12, md: 7 }}>
             <Title order={2} style={{ fontSize: '22px' }} c="#212529" mb={24}>Почему стоит вступить в клуб?</Title>
             <Box style={{ borderLeft: '4px solid #1A235E', paddingLeft: '20px' }}>
-              {/* ИСПРАВЛЕНИЕ: size="md" вместо size="16px" */}
               <Text c="#495057" size="md" lh={1.7}>
                 {club.quote}
               </Text>
@@ -102,7 +133,6 @@ export default function ClubDetailsPage() {
 
         {/* Что это дает */}
         <Title order={2} style={{ fontSize: '22px' }} c="#212529" mb={24}>Что это дает студенту?</Title>
-        {/* ИСПРАВЛЕНИЕ: size="md" вместо size="16px" */}
         <List spacing="sm" size="md" c="#495057" mb={80} style={{ paddingLeft: '20px' }}>
           {club.benefits.map((ben: string, idx: number) => (
             <List.Item key={idx}>{ben}</List.Item>
@@ -124,7 +154,6 @@ export default function ClubDetailsPage() {
           {/* Информация */}
           <Box flex={1}>
             <Title order={3} style={{ fontSize: '22px' }} c="#1A235E" mb={8}>{club.leader.name}</Title>
-            {/* Для нестандартных мелких шрифтов используем fz или style */}
             <Text c="dimmed" fz="13px" mb={12} lh={1.4}>{club.leader.role}</Text>
             <Text c="dimmed" fz="13px">{club.leader.email}</Text>
           </Box>

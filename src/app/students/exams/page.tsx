@@ -13,7 +13,7 @@ export default function ExamSchedulePage() {
                 {/* Breadcrumbs */}
                 <Group gap={8} mb={20}>
                     <IconSchool size={20} className="text-[#1A235E]" stroke={1.5} />
-                    <Text className="text-gray-400 font-medium text-sm tracking-wide uppercase">
+                    <Text c="dimmed" fw={500} size="sm" tt="uppercase" style={{ letterSpacing: '1px' }}>
                         Студентам / График сессии
                     </Text>
                 </Group>
