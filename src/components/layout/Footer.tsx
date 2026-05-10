@@ -41,16 +41,39 @@ export function Footer() {
               Мы в соц. сетях
             </Title>
             <Group gap="sm">
-              <ActionIcon size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-pink-500">
+              <ActionIcon 
+                component="a" 
+                href="https://www.instagram.com/inai.kg?igsh=aTkxbDI4bWRtM204" 
+                target="_blank"
+                size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-pink-500"
+              >
                 <IconBrandInstagram size={22} stroke={1.5} />
               </ActionIcon>
-              <ActionIcon size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-blue-400">
+
+              <ActionIcon 
+                component="a" 
+                href="/" 
+                target="_blank"
+                size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-blue-400"
+              >
                 <IconBrandTelegram size={22} stroke={1.5} />
               </ActionIcon>
-              <ActionIcon size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-blue-600">
+
+              <ActionIcon 
+                component="a" 
+                href="/" 
+                target="_blank"
+                size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-blue-600"
+              >
                 <IconBrandFacebook size={22} stroke={1.5} />
               </ActionIcon>
-              <ActionIcon size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-red-500">
+
+              <ActionIcon 
+                component="a" 
+                href="https://youtube.com/@kgfiproject3728?si=zWGQz5UaAXCes_cE" 
+                target="_blank"
+                size="lg" variant="subtle" color="gray" radius="xl" className="hover:bg-gray-800 hover:text-red-500"
+              >
                 <IconBrandYoutube size={22} stroke={1.5} />
               </ActionIcon>
             </Group>

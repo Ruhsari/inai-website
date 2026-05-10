@@ -53,10 +53,49 @@ export default function ContactsPage() {
                                 Мы в социальных сетях:
                             </Text>
                             <Group gap="lg">
-                                <ActionIcon variant="transparent" size="xl" className="text-green-500"><IconBrandWhatsapp size={35} /></ActionIcon>
-                                <ActionIcon variant="transparent" size="xl" className="text-blue-700"><IconBrandFacebook size={35} /></ActionIcon>
-                                <ActionIcon variant="transparent" size="xl" className="text-pink-600"><IconBrandInstagram size={35} /></ActionIcon>
-                                <ActionIcon variant="transparent" size="xl" className="text-red-600"><IconBrandYoutube size={35} /></ActionIcon>
+                                <ActionIcon 
+                                    component="a"
+                                    href="/" 
+                                    target="_blank"
+                                    variant="transparent" 
+                                    size="xl" 
+                                    className="text-green-500 hover:scale-110 transition-transform"
+                                >
+                                    <IconBrandWhatsapp size={35} />
+                                </ActionIcon>
+
+                                <ActionIcon 
+                                    component="a"
+                                    href="/" 
+                                    target="_blank"
+                                    variant="transparent" 
+                                    size="xl" 
+                                    className="text-blue-700 hover:scale-110 transition-transform"
+                                >
+                                    <IconBrandFacebook size={35} />
+                                </ActionIcon>
+
+                                <ActionIcon 
+                                    component="a"
+                                    href="https://www.instagram.com/inai.kg?igsh=aTkxbDI4bWRtM204" 
+                                    target="_blank"
+                                    variant="transparent" 
+                                    size="xl" 
+                                    className="text-pink-600 hover:scale-110 transition-transform"
+                                >
+                                    <IconBrandInstagram size={35} />
+                                </ActionIcon>
+
+                                <ActionIcon 
+                                    component="a"
+                                    href="https://youtube.com/@kgfiproject3728?si=zWGQz5UaAXCes_cE" 
+                                    target="_blank"
+                                    variant="transparent" 
+                                    size="xl" 
+                                    className="text-red-600 hover:scale-110 transition-transform"
+                                >
+                                    <IconBrandYoutube size={35} />
+                                </ActionIcon>
                             </Group>
                         </Stack>
                     </div>

@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { IconSchool, IconArrowUpRight } from '@tabler/icons-react';
 
 const programs = [
-  { title: 'Программные технологии', image: '/images/prog-tech.png' },
-  { title: 'Прикладной анализ данных', image: '/images/data-analysis.png' },
-  { title: 'Веб-информатика', image: '/images/web-info.png' },
-  { title: 'Финансовый инжиниринг', image: '/images/fin-eng.png' },
+  { title: 'Программные технологии', image: '/images/prog-tech.svg' },
+  { title: 'Прикладной анализ данных', image: '/images/data-analysis.svg' },
+  { title: 'Веб-информатика', image: '/images/web-info.svg' },
+  { title: 'Финансовый инжиниринг', image: '/images/fin-eng.svg' },
 ];
 
 export function ProgramsBanner() {
@@ -50,7 +50,7 @@ export function ProgramsBanner() {
 
             <Button 
               size="lg"
-              color="#141A51" // Жестко задаем темно-синий цвет здесь
+              color="#141A51" 
               radius="sm"
               className="w-fit px-8 h-14 shadow-md transition-transform hover:-translate-y-1"
               rightSection={<IconArrowUpRight size={20} />}

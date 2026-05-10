@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Title, Text, Group, Box, SimpleGrid, TextInput, Pagination, UnstyledButton } from '@mantine/core';
 import { IconSchool, IconSearch } from '@tabler/icons-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Импортируем обе базы данных
 import { eventsData, eventCategories, type EventItem } from '../../data/eventsData';
@@ -17,6 +18,16 @@ export default function EventsPage() {
   const [activeCategory, setActiveCategory] = useState<string>('Предстоящие');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activePage, setPage] = useState<number>(1);
+
+  // ПРОВЕРКА ПАРАМЕТРА ИЗ URL ПРИ ЗАГРУЗКЕ
+  useEffect(() => {
+    // Если в ссылке есть ?tab=news, переключаем на новости
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('tab') === 'news') {
+      setActiveMainTab('Новости');
+      setActiveCategory('Все новости');
+    }
+  }, []);
 
   // Обработчик переключения главных вкладок
   const handleMainTabChange = (tab: 'Мероприятия' | 'Новости') => {
@@ -91,7 +102,6 @@ export default function EventsPage() {
         />
 
         <Group gap={16} mb={40}>
-          {/* Динамически выводим категории в зависимости от вкладки */}
           {currentCategories.map((category: string) => (
             <UnstyledButton
               key={category}
@@ -113,22 +123,60 @@ export default function EventsPage() {
         </Group>
 
         <SimpleGrid cols={{ base: 1, md: 2 }} spacing={40} mb={60}>
-          {finalFilteredData.map((item: CardItem) => (
-            <Box key={item.id} style={{ backgroundColor: 'white', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
-              <Box style={{ position: 'relative', width: '100%', height: '260px' }}>
-                <Image src={item.image} alt={item.title} fill style={{ objectFit: 'cover' }} unoptimized />
+          {finalFilteredData.map((item: CardItem) => {
+            // Определяем правильную ссылку в зависимости от текущей активной вкладки
+            const linkHref = activeMainTab === 'Мероприятия' ? `/events/${item.id}` : `/news/${item.id}`;
+
+            return (
+              <Box 
+                key={item.id} 
+                component={Link} // Делаем карточку кликабельной
+                href={linkHref}
+                style={{ 
+                  backgroundColor: 'white', 
+                  borderRadius: '24px', 
+                  overflow: 'hidden', 
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.06)', 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  textDecoration: 'none', // Убираем подчеркивание от ссылки
+                  color: 'inherit',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                className="hover:-translate-y-2 hover:shadow-lg group" // Добавляем небольшую анимацию при наведении
+              >
+                <Box style={{ position: 'relative', width: '100%', height: '260px', overflow: 'hidden' }}>
+                  <Image 
+                    src={item.image} 
+                    alt={item.title} 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                    className="transition-transform duration-500 group-hover:scale-105"
+                    unoptimized 
+                  />
+                </Box>
+                <Box p={32} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  {item.date && (
+                    <Text c="dimmed" size="13px" fw={600} mb={8} tt="uppercase">{item.date}</Text>
+                  )}
+                  <Title 
+                    order={3} 
+                    c="#1A235E" 
+                    size="20px" 
+                    mb={16} 
+                    lh={1.4}
+                    className="group-hover:text-[#2A347E] transition-colors"
+                  >
+                    {item.title}
+                  </Title>
+                  <Text c="dimmed" size="14px" lh={1.6} style={{ display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                    {item.description}
+                  </Text>
+                </Box>
               </Box>
-              <Box p={32} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                {item.date && (
-                   <Text c="dimmed" size="13px" fw={600} mb={8} tt="uppercase">{item.date}</Text>
-                )}
-                <Title order={3} c="#1A235E" size="20px" mb={16} lh={1.4}>{item.title}</Title>
-                <Text c="dimmed" size="14px" lh={1.6} style={{ display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  {item.description}
-                </Text>
-              </Box>
-            </Box>
-          ))}
+            );
+          })}
           
           {finalFilteredData.length === 0 && (
             <Text c="dimmed" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px 0' }}>По вашему запросу ничего не найдено.</Text>
