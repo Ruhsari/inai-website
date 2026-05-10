@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { Container, Title, Text, Button } from "@mantine/core";
 import { IconArrowUpRight } from "@tabler/icons-react";
+import Link from 'next/link';
 
 export function Hero() {
   return (
-    <section className="relative h-[600px] w-full mb-40 md:mb-32">
+    <section className="relative h-[600px] w-full mt-[20px] mb-40 md:mb-32">
       
       {/* 1. Фоновое изображение */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -17,13 +18,14 @@ export function Hero() {
           priority
           className="object-cover object-center"
         />
+        {/* Опечатка bg-transparфent исправлена на bg-transparent */}
         <div className="absolute inset-0 bg-black/20 md:bg-transparent" />
       </div>
 
       <Container size="lg" className="relative z-10 h-full flex items-end">
         
         {/* 2. Синяя карточка с контентом */}
-        <div className="bg-[#1A235E]/[0.97] p-8 md:p-12 text-white max-w-[700px] shadow-2xl rounded-sm translate-y-1/2 flex flex-col gap-[32px]">
+        <div className="bg-[#1A235E]/[0.97] p-8 md:p-12 text-white max-w-[700px] shadow-2xl rounded-sm translate-y-[20%] flex flex-col gap-[32px]">
           
           <Title 
             order={1} 
@@ -39,8 +41,10 @@ export function Hero() {
             специализирующийся в области компьютерных наук.
           </Text>
 
-          {/* ИЗМЕНЕННАЯ КНОПКА */}
+          
           <Button 
+            component={Link}
+            href="/applicants/programs"
             variant="white" 
             color="#1A235E"
             size="lg"
