@@ -22,8 +22,7 @@ const getFeatureIcon = (iconName: string) => {
 export default function ProgramDetailsPage() {
   const params = useParams();
   const currentId = params?.id;
-
-// Ищем программу сначала в бакалавриате, потом в магистратуре
+  
   const program = 
     bachelorData.programs.find(p => p.id === currentId) || 
     masterData.programs.find(p => p.id === currentId);
