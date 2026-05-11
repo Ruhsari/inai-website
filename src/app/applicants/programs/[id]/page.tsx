@@ -5,10 +5,8 @@ import { IconSchool, IconSchool as IconCap, IconSettings, IconCertificate, IconF
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, useParams } from 'next/navigation';
-
 import { bachelorData, masterData } from '../../../../data/programsData';
 
-// Функция для выбора правильной иконки
 const getFeatureIcon = (iconName: string) => {
   switch (iconName) {
     case 'time': return <IconCap size={32} color="#20B2AA" stroke={1.5} />;
@@ -35,7 +33,7 @@ export default function ProgramDetailsPage() {
 
   return (
     <div style={{ backgroundColor: 'white', padding: '80px 0', minHeight: '100vh' }}>
-      <Container size="md"> {/* Сузили контейнер для лучшей читаемости текста, как на макете */}
+      <Container size="md">
         
         {/* Хлебные крошки */}
         <Group gap={8} mb={40}>
@@ -52,7 +50,6 @@ export default function ProgramDetailsPage() {
 
         {/* Главный баннер */}
         <Box style={{ position: 'relative', width: '100%', aspectRatio: '15/9', borderRadius: '16px', overflow: 'hidden', marginBottom: '40px' }}>
-          {/* Если картинки пока нет, будет серый фон */}
           {pageDetails.heroImage ? (
             <Image src={pageDetails.heroImage} alt="Banner" fill style={{ objectFit: 'cover' }} unoptimized />
           ) : (
@@ -88,7 +85,6 @@ export default function ProgramDetailsPage() {
           ))}
         </SimpleGrid>
 
-        {/* Текст о карьере */}
         <Text ta="center" size="lg" lh={1.7} c="#333" mb={60} style={{ maxWidth: '900px', margin: '0 auto 60px' }}>
           {pageDetails.careerText}
         </Text>
