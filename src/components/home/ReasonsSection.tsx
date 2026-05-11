@@ -1,7 +1,8 @@
 "use client";
 
-import { Container, Title, Text, SimpleGrid, Stack, Box, ActionIcon, Divider } from '@mantine/core';
+import { Container, Title, Text, SimpleGrid, Stack, Box, ActionIcon } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link';
 import { IconArrowRight } from '@tabler/icons-react';
 
 const reasons = [
@@ -9,16 +10,19 @@ const reasons = [
     title: 'Стипендия DAAD',
     description: 'Стипендия DAAD открывает путь к обучению и стажировке в лучших вузах Германии.',
     icon: '/icons/daad.svg',
+    href: '/applicants/daad',
   },
   {
     title: 'Современное образование',
     description: 'Практическое обучение, современные лаборатории и активная студенческая жизнь помогают строить успешную карьеру.',
     icon: '/icons/education.svg',
+    href: '/applicants/programs',
   },
   {
     title: 'Учёба в Германии',
     description: 'После 3 курса студенты могут продолжить обучение в Германии и получить международный диплом.',
     icon: '/icons/germany.svg',
+    href: '/students/daad',
   },
 ];
 
@@ -61,33 +65,33 @@ export function ReasonsSection() {
                     />
                   </Box>
 
-                  {/* Текст */}
-                  <Stack gap="md" className="flex-grow">
-                    <Text className="text-[#1A235E] font-bold text-2xl leading-tight">
-                      {item.title}
-                    </Text>
-                    <Text className="text-gray-500 text-sm leading-relaxed px-2">
-                      {item.description}
-                    </Text>
-                  </Stack>
+                      <Stack gap="md" className="flex-grow">
+                        <Text className="text-[#1A235E] font-bold text-2xl leading-tight">
+                          {item.title}
+                        </Text>
+                        <Text className="text-gray-500 text-sm leading-relaxed px-2">
+                          {item.description}
+                        </Text>
+                      </Stack>
 
-                  {/* Кнопка-стрелка */}
-                  <ActionIcon 
-                    variant="outline" 
-                    color="teal" 
-                    size="xl" 
-                    radius="xl"
-                    className="mt-4 border-gray-300 hover:bg-teal-50 transition-colors"
-                  >
-                    <IconArrowRight size={20} stroke={1.5} className="text-gray-600" />
-                  </ActionIcon>
-                </Stack>
+                      <Link href={item.href}>
+                        <ActionIcon
+                            variant="outline"
+                            color="teal"
+                            size="xl"
+                            radius="xl"
+                            className="mt-4 border-gray-300 hover:bg-teal-50 transition-colors"
+                        >
+                          <IconArrowRight size={20} stroke={1.5} className="text-gray-600" />
+                        </ActionIcon>
+                      </Link>
+                    </Stack>
 
-              </div>
-            ))}
-          </SimpleGrid>
-        </Box>
-      </Container>
-    </section>
+                  </div>
+              ))}
+            </SimpleGrid>
+          </Box>
+        </Container>
+      </section>
   );
 }
