@@ -5,8 +5,8 @@ import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { Montserrat, Poppins } from 'next/font/google';
 import { ReactNode } from "react";
 
-import { Header } from "@/src/components/layout/Header";
-import { Footer } from "@/src/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const montserrat = Montserrat({ subsets: ['cyrillic', 'latin'], variable: '--font-montserrat' });
 const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-poppins' });
