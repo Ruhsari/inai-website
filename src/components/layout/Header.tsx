@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from 'react'; 
+import { useRouter } from 'next/navigation'; 
 import { Group, Burger, Drawer, UnstyledButton, TextInput, ActionIcon, Menu, Divider, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSearch, IconSun, IconChevronDown, IconExternalLink } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ThemeToggle'; 
 
 const links = [
     { link: '/', label: 'Главная', hasDropdown: false },
@@ -54,6 +57,20 @@ const links = [
 
 export function Header() {
     const [opened, { toggle, close }] = useDisclosure(false);
+    
+    // СТЕЙТ ДЛЯ ПОИСКА И РОУТЕР
+    const [searchQuery, setSearchQuery] = useState('');
+    const router = useRouter();
+
+    // ФУНКЦИЯ ОБРАБОТКИ ПОИСКА
+    const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && searchQuery.trim() !== '') {
+            // Перекидываем на страницу поиска с параметром (например, /search?q=Студент)
+            router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+            close(); // Закрываем мобильное меню, если оно было открыто
+            setSearchQuery(''); // Очищаем строку после поиска
+        }
+    };
 
     const StudentsDropdown = () => (
         <div className="p-1 min-w-[280px]">
@@ -84,7 +101,7 @@ export function Header() {
 
     return (
         <header className="pt-4 px-4 md:px-6 bg-gray-50">
-            <div className="max-w-7xl mx-auto bg-white border border-gray-200 rounded-xl shadow-sm">
+            <div className="max-w-7xl mx-auto bg-white dark:bg-gray-900 border border-gray-200 rounded-xl shadow-sm">
 
                 {/* ВЕРХНЯЯ ЧАСТЬ */}
                 <div className="flex items-center justify-between py-3 px-6">
@@ -107,10 +124,11 @@ export function Header() {
                             size="sm"
                             variant="filled"
                             className="w-64"
+                            value={searchQuery} // <-- ПРИВЯЗАЛИ СТЕЙТ
+                            onChange={(e) => setSearchQuery(e.currentTarget.value)} // <-- СЛЕДИМ ЗА ВВОДОМ
+                            onKeyDown={handleSearch} // <-- СЛУШАЕМ НАЖАТИЕ ENTER
                         />
-                        <ActionIcon size="lg" variant="default" radius="md">
-                            <IconSun size={18} stroke={1.5} />
-                        </ActionIcon>
+                        <ThemeToggle />
                         <Menu shadow="md" width={100} position="bottom-end">
                             <Menu.Target>
                                 <UnstyledButton className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors text-sm font-medium text-gray-700">
@@ -145,9 +163,10 @@ export function Header() {
                             >
                                 <Menu.Target>
                                     <UnstyledButton
-                                        className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-1 cursor-default"
+                                        className="relative group flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#1A235E] transition-colors py-1 cursor-default"
                                     >
-                                        {link.label} <IconChevronDown size={14} stroke={2} className="text-gray-400" />
+                                        {link.label} <IconChevronDown size={14} stroke={2} className="text-gray-400 group-hover:text-[#1A235E] transition-colors" />
+                                        <span className="absolute left-0 bottom-[-6px] w-full h-[2px] bg-[#1A235E] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
                                     </UnstyledButton>
                                 </Menu.Target>
 
@@ -173,9 +192,10 @@ export function Header() {
                                 key={link.label}
                                 component={Link}
                                 href={link.link}
-                                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-1"
+                                className="relative group text-sm font-medium text-gray-700 hover:text-[#1A235E] transition-colors py-1"
                             >
                                 {link.label}
+                                <span className="absolute left-0 bottom-[-6px] w-full h-[2px] bg-[#1A235E] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
                             </UnstyledButton>
                         )
                     ))}
@@ -193,7 +213,15 @@ export function Header() {
                 zIndex={1000000}
             >
                 <Stack gap="sm">
-                    <TextInput placeholder="Поиск по сайту" leftSection={<IconSearch size={16} />} radius="md" mb="sm" />
+                    <TextInput 
+                        placeholder="Поиск по сайту (Enter)" 
+                        leftSection={<IconSearch size={16} />} 
+                        radius="md" 
+                        mb="sm" 
+                        value={searchQuery} // <-- ПРИВЯЗАЛИ СТЕЙТ К МОБИЛКЕ
+                        onChange={(e) => setSearchQuery(e.currentTarget.value)}
+                        onKeyDown={handleSearch}
+                    />
                     {links.map((link) => (
                         <div key={link.label} className="border-b border-gray-100 pb-2">
                             {link.hasDropdown ? (
